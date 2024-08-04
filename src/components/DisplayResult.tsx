@@ -10,6 +10,8 @@ interface receivedProps {
   setIsPrime: React.Dispatch<React.SetStateAction<boolean | null>>;
   primes: number[];
   setPrimes: React.Dispatch<React.SetStateAction<number[]>>;
+  showResult: any | null;
+  setShowResult: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const DisplayResult: React.FC<receivedProps> = ({
@@ -17,8 +19,11 @@ const DisplayResult: React.FC<receivedProps> = ({
   setIsPrime,
   primes,
   setPrimes,
+  showResult,
+  setShowResult,
 }) => {
   const [count, setCount] = useState<number | null>(null);
+  const [output, setOutput] = useState<string>("");
 
   useEffect(() => {
     let interval: number;
@@ -34,6 +39,26 @@ const DisplayResult: React.FC<receivedProps> = ({
     return () => clearInterval(interval);
   }, [primes]);
 
+  useEffect(() => {
+    let interval: number;
+    let index: number = 0;
+    let output: string = "";
+    setShowResult(null);
+
+    interval = setInterval(() => {
+      if (index >= primes.length) {
+        clearInterval(interval);
+        return;
+      }
+
+      output += primes[index] + ", ";
+      setOutput(output);
+      index++;
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, [primes]);
+
   return (
     <>
       <div>
@@ -44,7 +69,10 @@ const DisplayResult: React.FC<receivedProps> = ({
           </span>
         </span>
         <div>
-          <Textarea></Textarea>
+          <Textarea
+            readOnly
+            value={showResult !== null ? showResult : output}
+          ></Textarea>
         </div>
         <button>Clear</button>
       </div>
