@@ -1,11 +1,11 @@
 import Header from "./components/Header";
-import InputContainer from "./components/InputContainer";
+import MainContainer from "./components/MainContainer";
 
 export default function App() {
   return (
     <>
       <Header />
-      <InputContainer />
+      <MainContainer />
     </>
   );
 }
