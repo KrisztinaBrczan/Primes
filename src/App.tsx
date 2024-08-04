@@ -13,14 +13,14 @@ const Container = styled.div`
 `;
 
 interface RangeValues {
-  start: number;
-  end: number;
+  start: number | null;
+  end: number | null;
 }
 
-const initialRangeValues: RangeValues = { start: 0, end: 0 };
+const initialRangeValues: RangeValues = { start: null, end: null };
 
 const App: React.FC = () => {
-  const [singleNumber, setSingleNumber] = useState<number>(0);
+  const [singleNumber, setSingleNumber] = useState<number | null>(null);
   const [range, setRange] = useState<RangeValues>(initialRangeValues);
 
   console.log(singleNumber);

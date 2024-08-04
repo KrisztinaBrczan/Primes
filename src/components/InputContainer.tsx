@@ -1,11 +1,11 @@
 interface RangeValues {
-  start: number;
-  end: number;
+  start: number | null;
+  end: number | null;
 }
 
 interface reiceviedProps {
-  singleNumber: number;
-  setSingleNumber: React.Dispatch<React.SetStateAction<number>>;
+  singleNumber: number | null;
+  setSingleNumber: React.Dispatch<React.SetStateAction<number | null>>;
   range: RangeValues;
   setRange: React.Dispatch<React.SetStateAction<RangeValues>>;
 }
@@ -23,8 +23,10 @@ const InputContainer: React.FC<reiceviedProps> = ({
           Is my number prime?
           <input
             type="number"
-            value={singleNumber}
-            onChange={(e) => setSingleNumber(Number(e.target.value))}
+            value={singleNumber ?? ""}
+            onChange={(e) =>
+              setSingleNumber(e.target.value ? Number(e.target.value) : null)
+            }
           />
         </label>
         <button>Check</button>
@@ -34,17 +36,23 @@ const InputContainer: React.FC<reiceviedProps> = ({
           Find primes between:
           <input
             type="number"
-            value={range.start}
+            value={range.start ?? ""}
             onChange={(e) =>
-              setRange({ ...range, start: Number(e.target.value) })
+              setRange({
+                ...range,
+                start: e.target.value ? Number(e.target.value) : null,
+              })
             }
           />
           and
           <input
             type="number"
-            value={range.end}
+            value={range.end ?? ""}
             onChange={(e) =>
-              setRange({ ...range, end: Number(e.target.value) })
+              setRange({
+                ...range,
+                end: e.target.value ? Number(e.target.value) : null,
+              })
             }
           />
         </label>
