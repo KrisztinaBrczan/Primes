@@ -1,3 +1,5 @@
+import { Button } from "../style/Button";
+
 interface RangeValues {
   start: number | null;
   end: number | null;
@@ -8,6 +10,8 @@ interface reiceviedProps {
   setSingleNumber: React.Dispatch<React.SetStateAction<number | null>>;
   range: RangeValues;
   setRange: React.Dispatch<React.SetStateAction<RangeValues>>;
+  checkIfPrime: (number: number) => void;
+  sortPrimes: (startingNumber: number, endingNumber: number) => void;
 }
 
 const InputContainer: React.FC<reiceviedProps> = ({
@@ -15,6 +19,8 @@ const InputContainer: React.FC<reiceviedProps> = ({
   setSingleNumber,
   range,
   setRange,
+  checkIfPrime,
+  sortPrimes,
 }) => {
   return (
     <>
@@ -29,12 +35,18 @@ const InputContainer: React.FC<reiceviedProps> = ({
             }
           />
         </label>
-        <button>Check</button>
+        <Button
+          disabled={range.start !== null || range.end !== null}
+          onClick={() => (singleNumber ? checkIfPrime(singleNumber) : null)}
+        >
+          Check
+        </Button>
       </div>
       <div>
         <label>
           Find primes between:
           <input
+            disabled={singleNumber ? true : false}
             type="number"
             value={range.start ?? ""}
             onChange={(e) =>
@@ -46,6 +58,7 @@ const InputContainer: React.FC<reiceviedProps> = ({
           />
           and
           <input
+            disabled={singleNumber ? true : false}
             type="number"
             value={range.end ?? ""}
             onChange={(e) =>
@@ -56,7 +69,14 @@ const InputContainer: React.FC<reiceviedProps> = ({
             }
           />
         </label>
-        <button>Check</button>
+        <Button
+          disabled={
+            singleNumber !== null || range.start === null || range.end === null
+          }
+          onClick={() => sortPrimes(range.start!, range.end!)}
+        >
+          Check
+        </Button>
       </div>
     </>
   );
