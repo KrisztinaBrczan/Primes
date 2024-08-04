@@ -10,6 +10,7 @@ interface reiceviedProps {
   setSingleNumber: React.Dispatch<React.SetStateAction<number | null>>;
   range: RangeValues;
   setRange: React.Dispatch<React.SetStateAction<RangeValues>>;
+  checkIfPrime: (number: number) => void;
 }
 
 const InputContainer: React.FC<reiceviedProps> = ({
@@ -17,6 +18,7 @@ const InputContainer: React.FC<reiceviedProps> = ({
   setSingleNumber,
   range,
   setRange,
+  checkIfPrime,
 }) => {
   return (
     <>
@@ -31,7 +33,11 @@ const InputContainer: React.FC<reiceviedProps> = ({
             }
           />
         </label>
-        <Button>Check</Button>
+        <Button
+          onClick={() => (singleNumber ? checkIfPrime(singleNumber) : null)}
+        >
+          Check
+        </Button>
       </div>
       <div>
         <label>

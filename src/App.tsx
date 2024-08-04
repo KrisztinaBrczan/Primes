@@ -3,6 +3,7 @@ import DisplayResult from "./components/DisplayResult";
 import InputContainer from "./components/InputContainer";
 import styled from "styled-components";
 import { useState } from "react";
+import { isSingleNumberPrime } from "./utils/isSingleNumberPrime";
 
 const Container = styled.div`
   border: 1px solid black;
@@ -22,10 +23,18 @@ const initialRangeValues: RangeValues = { start: null, end: null };
 const App: React.FC = () => {
   const [singleNumber, setSingleNumber] = useState<number | null>(null);
   const [range, setRange] = useState<RangeValues>(initialRangeValues);
-  const [primesFound, setPrimesFound] = useState<number | null>(null);
+  const [isPrime, setIsPrime] = useState<boolean | null>(null);
   const [primes, setPrimes] = useState<number[]>([]);
 
   console.log(singleNumber);
+
+  function checkIfPrime(number: number) {
+    let isPrime: boolean = isSingleNumberPrime(number);
+    setIsPrime(isPrime);
+    setSingleNumber(null);
+  }
+
+  console.log(isPrime);
 
   return (
     <>
@@ -36,10 +45,11 @@ const App: React.FC = () => {
           setSingleNumber={setSingleNumber}
           range={range}
           setRange={setRange}
+          checkIfPrime={checkIfPrime}
         />
         <DisplayResult
-          primesFound={primesFound}
-          setPrimesFound={setPrimesFound}
+          isPrime={isPrime}
+          setIsPrime={setIsPrime}
           primes={primes}
           setPrimes={setPrimes}
         />
