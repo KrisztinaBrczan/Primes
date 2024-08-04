@@ -25,6 +25,7 @@ const App: React.FC = () => {
   const [range, setRange] = useState<RangeValues>(initialRangeValues);
   const [isPrime, setIsPrime] = useState<boolean | null>(null);
   const [primes, setPrimes] = useState<number[]>([]);
+  const [showResult, setShowResult] = useState<string | null>(null);
 
   console.log(singleNumber);
 
@@ -32,6 +33,7 @@ const App: React.FC = () => {
     let isPrime: boolean = isSingleNumberPrime(number);
     setIsPrime(isPrime);
     setSingleNumber(null);
+    setShowResult(isPrime ? "Yes" : "No");
   }
 
   function sortPrimes(startingNumber: number, endingNumber: number): void {
@@ -65,6 +67,8 @@ const App: React.FC = () => {
           setIsPrime={setIsPrime}
           primes={primes}
           setPrimes={setPrimes}
+          showResult={showResult}
+          setShowResult={setShowResult}
         />
       </Container>
     </>
