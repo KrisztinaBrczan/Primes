@@ -22,6 +22,8 @@ const initialRangeValues: RangeValues = { start: null, end: null };
 const App: React.FC = () => {
   const [singleNumber, setSingleNumber] = useState<number | null>(null);
   const [range, setRange] = useState<RangeValues>(initialRangeValues);
+  const [primesFound, setPrimesFound] = useState<number | null>(null);
+  const [primes, setPrimes] = useState<number[]>([]);
 
   console.log(singleNumber);
 
@@ -35,7 +37,12 @@ const App: React.FC = () => {
           range={range}
           setRange={setRange}
         />
-        <DisplayResult />
+        <DisplayResult
+          primesFound={primesFound}
+          setPrimesFound={setPrimesFound}
+          primes={primes}
+          setPrimes={setPrimes}
+        />
       </Container>
     </>
   );
