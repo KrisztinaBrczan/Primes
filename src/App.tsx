@@ -38,6 +38,13 @@ const App: React.FC = () => {
 
   function sortPrimes(startingNumber: number, endingNumber: number): void {
     let primeNumbers: number[] = [];
+    if (startingNumber >= endingNumber) {
+      alert(
+        "Starting number cannot be greater than or equal to the ending number!"
+      );
+      setRange(initialRangeValues);
+      return;
+    }
     for (let i = startingNumber; i < endingNumber; i++) {
       if (isSingleNumberPrime(i)) {
         primeNumbers.push(i);
