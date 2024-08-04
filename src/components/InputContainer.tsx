@@ -1,3 +1,5 @@
+import { Button } from "../style/Button";
+
 interface RangeValues {
   start: number | null;
   end: number | null;
@@ -29,7 +31,7 @@ const InputContainer: React.FC<reiceviedProps> = ({
             }
           />
         </label>
-        <button>Check</button>
+        <Button>Check</Button>
       </div>
       <div>
         <label>
@@ -56,7 +58,7 @@ const InputContainer: React.FC<reiceviedProps> = ({
             }
           />
         </label>
-        <button>Check</button>
+        <Button>Check</Button>
       </div>
     </>
   );
