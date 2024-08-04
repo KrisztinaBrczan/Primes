@@ -11,6 +11,7 @@ interface reiceviedProps {
   range: RangeValues;
   setRange: React.Dispatch<React.SetStateAction<RangeValues>>;
   checkIfPrime: (number: number) => void;
+  sortPrimes: (startingNumber: number, endingNumber: number) => void;
 }
 
 const InputContainer: React.FC<reiceviedProps> = ({
@@ -19,6 +20,7 @@ const InputContainer: React.FC<reiceviedProps> = ({
   range,
   setRange,
   checkIfPrime,
+  sortPrimes,
 }) => {
   return (
     <>
@@ -43,6 +45,7 @@ const InputContainer: React.FC<reiceviedProps> = ({
         <label>
           Find primes between:
           <input
+            disabled={singleNumber ? true : false}
             type="number"
             value={range.start ?? ""}
             onChange={(e) =>
@@ -54,6 +57,7 @@ const InputContainer: React.FC<reiceviedProps> = ({
           />
           and
           <input
+            disabled={singleNumber ? true : false}
             type="number"
             value={range.end ?? ""}
             onChange={(e) =>
@@ -64,7 +68,14 @@ const InputContainer: React.FC<reiceviedProps> = ({
             }
           />
         </label>
-        <Button>Check</Button>
+        <Button
+          disabled={
+            singleNumber !== null || range.start === null || range.end === null
+          }
+          onClick={() => sortPrimes(range.start!, range.end!)}
+        >
+          Check
+        </Button>
       </div>
     </>
   );

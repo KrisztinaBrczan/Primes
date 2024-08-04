@@ -34,7 +34,19 @@ const App: React.FC = () => {
     setSingleNumber(null);
   }
 
+  function sortPrimes(startingNumber: number, endingNumber: number): void {
+    let primeNumbers: number[] = [];
+    for (let i = startingNumber; i < endingNumber; i++) {
+      if (isSingleNumberPrime(i)) {
+        primeNumbers.push(i);
+      }
+    }
+    setPrimes(primeNumbers);
+    setRange(initialRangeValues);
+  }
+
   console.log(isPrime);
+  console.log(primes);
 
   return (
     <>
@@ -46,6 +58,7 @@ const App: React.FC = () => {
           range={range}
           setRange={setRange}
           checkIfPrime={checkIfPrime}
+          sortPrimes={sortPrimes}
         />
         <DisplayResult
           isPrime={isPrime}
