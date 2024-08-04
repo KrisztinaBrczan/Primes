@@ -1,3 +1,4 @@
+import DisplayResult from "./DisplayResult";
 import InputContainer from "./InputContainer";
 import styled from "styled-components";
 
@@ -14,6 +15,7 @@ export default function MainContainer() {
     <>
       <Container>
         <InputContainer />
+        <DisplayResult />
       </Container>
     </>
   );
