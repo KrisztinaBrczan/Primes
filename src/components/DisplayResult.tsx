@@ -58,6 +58,7 @@ const DisplayResult: React.FC<ReceivedProps> = ({
         if (count === primes.length) {
           clearInterval(interval);
         }
+
         setCount(count++);
 
         if (index >= primes.length) {
@@ -87,7 +88,7 @@ const DisplayResult: React.FC<ReceivedProps> = ({
         <div>
           <span>
             Number of primes found:{" "}
-            <span style={{ display: count === 0 ? "none" : "inline" }}>
+            <span style={{ display: count === null ? "none" : "inline" }}>
               {count}
             </span>
           </span>
@@ -98,7 +99,14 @@ const DisplayResult: React.FC<ReceivedProps> = ({
               rows={10}
             ></Textarea>
           </div>
-          <Button onClick={handleClear}>Clear</Button>
+          <Button
+            onClick={handleClear}
+            disabled={count !== null && count < primes.length ? true : false}
+          >
+            {count !== null && count < primes.length
+              ? "Calculating..."
+              : "Clear"}
+          </Button>
         </div>
       </Container>
     </>
