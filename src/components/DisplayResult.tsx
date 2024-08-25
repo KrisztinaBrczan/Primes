@@ -29,37 +29,36 @@ const DisplayResult: React.FC<ReceivedProps> = ({
 
   useEffect(() => {
     let interval: number;
+    let index: number = 0;
     let count: number = 0;
+    let output: string = "";
+    setShowResult(null);
+
     if (count <= primes.length) {
       interval = setInterval(() => {
         if (count === primes.length) {
           clearInterval(interval);
         }
         setCount(count++);
+
+        if (index >= primes.length) {
+          clearInterval(interval);
+          return;
+        }
+        output += primes[index] + ", ";
+        setOutput(output.slice(0, output.length - 2));
+        index++;
       }, 50);
     }
+
     return () => clearInterval(interval);
   }, [primes]);
 
-  useEffect(() => {
-    let interval: number;
-    let index: number = 0;
-    let output: string = "";
+  function handleClear() {
+    setCount(null);
     setShowResult(null);
-
-    interval = setInterval(() => {
-      if (index >= primes.length) {
-        clearInterval(interval);
-        return;
-      }
-
-      output += primes[index] + ", ";
-      setOutput(output.slice(0, output.length - 2));
-      index++;
-    }, 50);
-
-    return () => clearInterval(interval);
-  }, [primes]);
+    setOutput("");
+  }
 
   return (
     <>
@@ -76,7 +75,7 @@ const DisplayResult: React.FC<ReceivedProps> = ({
             value={showResult !== null ? showResult : output}
           ></Textarea>
         </div>
-        <button>Clear</button>
+        <button onClick={handleClear}>Clear</button>
       </div>
     </>
   );
