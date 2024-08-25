@@ -79,7 +79,9 @@ const InputContainer: React.FC<reiceviedProps> = ({
           disabled={
             singleNumber !== null || range.start === null || range.end === null
           }
-          onClick={() => sortPrimes(range.start!, range.end!)}
+          onClick={() =>
+            sortPrimes(Math.ceil(range.start!), Math.ceil(range.end!))
+          }
         >
           Check
         </Button>
