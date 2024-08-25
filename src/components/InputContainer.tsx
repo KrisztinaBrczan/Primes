@@ -38,7 +38,11 @@ const InputContainer: React.FC<reiceviedProps> = ({
           />
         </label>
         <Button
-          disabled={range.start !== null || range.end !== null}
+          disabled={
+            singleNumber
+              ? false
+              : true || range.start !== null || range.end !== null
+          }
           onClick={() => (singleNumber ? checkIfPrime(singleNumber) : null)}
         >
           Check
