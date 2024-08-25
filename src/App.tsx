@@ -4,13 +4,16 @@ import InputContainer from "./components/InputContainer";
 import styled from "styled-components";
 import { useState } from "react";
 import { isSingleNumberPrime } from "./utils/isSingleNumberPrime";
+import "./index.css";
 
 const Container = styled.div`
-  border: 1px solid black;
-  border-radius: 2em;
-  padding: 1em;
+  background-color: white;
+  border-radius: 1em;
+  padding: 2em;
   margin: auto;
-  box-shadow: 5px 5px 10px grey;
+  max-width: 700px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
 `;
 
 interface RangeValues {

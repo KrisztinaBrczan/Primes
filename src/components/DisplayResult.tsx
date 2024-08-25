@@ -1,9 +1,24 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { initialInputValues } from "../App";
+import { Button } from "../style/Button";
+import "../index.css";
 
 const Textarea = styled.textarea`
-  width: 50%;
+  width: 100%;
+  resize: none;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  margin-top: 1em;
+  height: 150px;
+  font-family: Roboto-LightItalic;
+`;
+
+const Container = styled.div`
+  text-align: center;
+  margin-top: 2em;
 `;
 
 interface InputValues {
@@ -68,21 +83,24 @@ const DisplayResult: React.FC<ReceivedProps> = ({
 
   return (
     <>
-      <div>
-        <span>
-          Number of primes found:{" "}
-          <span style={{ display: count === 0 ? "none" : "inline" }}>
-            {count}
-          </span>
-        </span>
+      <Container>
         <div>
-          <Textarea
-            readOnly
-            value={showResult !== null ? showResult : output}
-          ></Textarea>
+          <span>
+            Number of primes found:{" "}
+            <span style={{ display: count === 0 ? "none" : "inline" }}>
+              {count}
+            </span>
+          </span>
+          <div>
+            <Textarea
+              readOnly
+              value={showResult !== null ? showResult : output}
+              rows={10}
+            ></Textarea>
+          </div>
+          <Button onClick={handleClear}>Clear</Button>
         </div>
-        <button onClick={handleClear}>Clear</button>
-      </div>
+      </Container>
     </>
   );
 };
