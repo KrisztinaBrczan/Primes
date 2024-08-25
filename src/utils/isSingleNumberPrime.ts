@@ -1,8 +1,5 @@
 export function isSingleNumberPrime(number: number): boolean {
-  if (!Number.isInteger(number)) {
-    alert("Input must be an integer!");
-  }
-  if (number <= 1) return false;
+  if (number <= 1 || !Number.isInteger(number)) return false;
 
   for (let i = 2; i < number; i++) {
     if (number % i === 0) return false;
