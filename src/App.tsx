@@ -44,8 +44,6 @@ const App: React.FC = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<InputValues>(initialInputValues);
 
-  console.log(singleNumber);
-
   function checkIfPrime(number: number) {
     let isPrime: boolean = isSingleNumberPrime(number);
     setIsPrime(isPrime);
@@ -70,9 +68,6 @@ const App: React.FC = () => {
     setPrimes(primeNumbers);
     setRange(initialRangeValues);
   }
-
-  console.log(isPrime);
-  console.log(primes);
 
   return (
     <>
