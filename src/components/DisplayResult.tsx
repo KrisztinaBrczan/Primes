@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { initialInputValues } from "../App";
+import { Button } from "../style/Button";
 
 const Textarea = styled.textarea`
-  width: 50%;
+  width: 100%;
+  resize: none;
 `;
 
 interface InputValues {
@@ -79,9 +81,10 @@ const DisplayResult: React.FC<ReceivedProps> = ({
           <Textarea
             readOnly
             value={showResult !== null ? showResult : output}
+            rows={10}
           ></Textarea>
         </div>
-        <button onClick={handleClear}>Clear</button>
+        <Button onClick={handleClear}>Clear</Button>
       </div>
     </>
   );

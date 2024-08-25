@@ -8,7 +8,7 @@ import { isSingleNumberPrime } from "./utils/isSingleNumberPrime";
 const Container = styled.div`
   border: 1px solid black;
   border-radius: 2em;
-  padding: 1em;
+  padding: 2em;
   margin: auto;
   box-shadow: 5px 5px 10px grey;
 `;
