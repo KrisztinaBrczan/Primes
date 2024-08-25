@@ -1,0 +1,5 @@
+@import "./style/fonts.css";
+
+* {
+  font-family: "Roboto-BoldItalic";
+}

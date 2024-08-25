@@ -4,6 +4,7 @@ import InputContainer from "./components/InputContainer";
 import styled from "styled-components";
 import { useState } from "react";
 import { isSingleNumberPrime } from "./utils/isSingleNumberPrime";
+import "./index.css";
 
 const Container = styled.div`
   border: 1px solid black;
