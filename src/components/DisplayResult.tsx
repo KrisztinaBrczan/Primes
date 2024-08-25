@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { initialInputValues } from "../App";
 
 const Textarea = styled.textarea`
   width: 50%;
 `;
 
+interface InputValues {
+  singleNumberInput: string;
+  startingNumberInput: string;
+  endingNumberInput: string;
+}
+
 interface ReceivedProps {
   primes: number[];
-
   showResult: any | null;
   setShowResult: (showResult: string | null) => void;
-
   setIsDisabled: (isDisabled: boolean) => void;
+  inputValue: InputValues;
+  setInputValue: (inputValue: InputValues) => void;
 }
 
 const DisplayResult: React.FC<ReceivedProps> = ({
@@ -19,6 +26,7 @@ const DisplayResult: React.FC<ReceivedProps> = ({
   showResult,
   setShowResult,
   setIsDisabled,
+  setInputValue,
 }) => {
   const [count, setCount] = useState<number | null>(null);
   const [output, setOutput] = useState<string>("");
@@ -55,6 +63,7 @@ const DisplayResult: React.FC<ReceivedProps> = ({
     setShowResult(null);
     setOutput("");
     setIsDisabled(false);
+    setInputValue(initialInputValues);
   }
 
   return (

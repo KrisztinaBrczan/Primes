@@ -18,7 +18,19 @@ interface RangeValues {
   end: number | null;
 }
 
+interface InputValues {
+  singleNumberInput: string;
+  startingNumberInput: string;
+  endingNumberInput: string;
+}
+
 const initialRangeValues: RangeValues = { start: null, end: null };
+
+export const initialInputValues: InputValues = {
+  singleNumberInput: "",
+  startingNumberInput: "",
+  endingNumberInput: "",
+};
 
 const App: React.FC = () => {
   const [singleNumber, setSingleNumber] = useState<number | null>(null);
@@ -27,6 +39,7 @@ const App: React.FC = () => {
   const [primes, setPrimes] = useState<number[]>([]);
   const [showResult, setShowResult] = useState<string | null>(null);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useState<InputValues>(initialInputValues);
 
   console.log(singleNumber);
 
@@ -71,12 +84,16 @@ const App: React.FC = () => {
           sortPrimes={sortPrimes}
           isDisabled={isDisabled}
           setIsDisabled={setIsDisabled}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
         />
         <DisplayResult
           primes={primes}
           showResult={showResult}
           setShowResult={setShowResult}
           setIsDisabled={setIsDisabled}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
         />
       </Container>
     </>
