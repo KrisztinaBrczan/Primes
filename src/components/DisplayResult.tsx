@@ -6,23 +6,19 @@ const Textarea = styled.textarea`
 `;
 
 interface ReceivedProps {
-  isPrime: boolean | null;
-  setIsPrime: (isPrime: boolean | null) => void;
-
   primes: number[];
-  setPrimes: (numbers: number[]) => void;
 
   showResult: any | null;
   setShowResult: (showResult: string | null) => void;
+
+  setIsDisabled: (isDisabled: boolean) => void;
 }
 
 const DisplayResult: React.FC<ReceivedProps> = ({
-  isPrime,
-  setIsPrime,
   primes,
-  setPrimes,
   showResult,
   setShowResult,
+  setIsDisabled,
 }) => {
   const [count, setCount] = useState<number | null>(null);
   const [output, setOutput] = useState<string>("");
@@ -58,6 +54,7 @@ const DisplayResult: React.FC<ReceivedProps> = ({
     setCount(null);
     setShowResult(null);
     setOutput("");
+    setIsDisabled(false);
   }
 
   return (
