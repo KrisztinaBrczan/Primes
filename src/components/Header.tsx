@@ -4,10 +4,12 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-export default function Header() {
+const Header: React.FC = () => {
   return (
     <>
       <Title>Find Primes</Title>
     </>
   );
-}
+};
+
+export default Header;
