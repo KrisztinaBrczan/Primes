@@ -52,7 +52,7 @@ const DisplayResult: React.FC<receivedProps> = ({
       }
 
       output += primes[index] + ", ";
-      setOutput(output);
+      setOutput(output.slice(0, output.length - 2));
       index++;
     }, 50);
 
