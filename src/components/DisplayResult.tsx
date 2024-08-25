@@ -5,16 +5,18 @@ const Textarea = styled.textarea`
   width: 50%;
 `;
 
-interface receivedProps {
+interface ReceivedProps {
   isPrime: boolean | null;
-  setIsPrime: React.Dispatch<React.SetStateAction<boolean | null>>;
+  setIsPrime: (isPrime: boolean | null) => void;
+
   primes: number[];
-  setPrimes: React.Dispatch<React.SetStateAction<number[]>>;
+  setPrimes: (numbers: number[]) => void;
+
   showResult: any | null;
-  setShowResult: React.Dispatch<React.SetStateAction<any>>;
+  setShowResult: (showResult: string | null) => void;
 }
 
-const DisplayResult: React.FC<receivedProps> = ({
+const DisplayResult: React.FC<ReceivedProps> = ({
   isPrime,
   setIsPrime,
   primes,
@@ -52,7 +54,7 @@ const DisplayResult: React.FC<receivedProps> = ({
       }
 
       output += primes[index] + ", ";
-      setOutput(output);
+      setOutput(output.slice(0, output.length - 2));
       index++;
     }, 50);
 

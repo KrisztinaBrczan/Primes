@@ -7,9 +7,11 @@ interface RangeValues {
 
 interface reiceviedProps {
   singleNumber: number | null;
-  setSingleNumber: React.Dispatch<React.SetStateAction<number | null>>;
+  setSingleNumber: (singleNumber: number | null) => void;
+
   range: RangeValues;
-  setRange: React.Dispatch<React.SetStateAction<RangeValues>>;
+  setRange: (range: RangeValues) => void;
+
   checkIfPrime: (number: number) => void;
   sortPrimes: (startingNumber: number, endingNumber: number) => void;
 }
