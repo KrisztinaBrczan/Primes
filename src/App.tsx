@@ -45,7 +45,7 @@ const App: React.FC = () => {
       setRange(initialRangeValues);
       return;
     }
-    for (let i = startingNumber; i < endingNumber; i++) {
+    for (let i = startingNumber; i <= endingNumber; i++) {
       if (isSingleNumberPrime(i)) {
         primeNumbers.push(i);
       }
