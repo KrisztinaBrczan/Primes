@@ -14,6 +14,9 @@ interface reiceviedProps {
 
   checkIfPrime: (number: number) => void;
   sortPrimes: (startingNumber: number, endingNumber: number) => void;
+
+  isDisabled: boolean;
+  setIsDisabled: (isDisabled: boolean) => void;
 }
 
 const InputContainer: React.FC<reiceviedProps> = ({
@@ -23,6 +26,8 @@ const InputContainer: React.FC<reiceviedProps> = ({
   setRange,
   checkIfPrime,
   sortPrimes,
+  isDisabled,
+  setIsDisabled,
 }) => {
   return (
     <>
@@ -30,6 +35,7 @@ const InputContainer: React.FC<reiceviedProps> = ({
         <label>
           Is my number prime?
           <input
+            disabled={isDisabled}
             type="number"
             value={singleNumber ?? ""}
             onChange={(e) =>
@@ -43,7 +49,10 @@ const InputContainer: React.FC<reiceviedProps> = ({
               ? false
               : true || range.start !== null || range.end !== null
           }
-          onClick={() => (singleNumber ? checkIfPrime(singleNumber) : null)}
+          onClick={() => {
+            singleNumber ? checkIfPrime(singleNumber) : null;
+            setIsDisabled(true);
+          }}
         >
           Check
         </Button>
@@ -52,7 +61,7 @@ const InputContainer: React.FC<reiceviedProps> = ({
         <label>
           Find primes between:
           <input
-            disabled={singleNumber ? true : false}
+            disabled={isDisabled || singleNumber ? true : false}
             type="number"
             value={range.start ?? ""}
             onChange={(e) =>
@@ -64,7 +73,7 @@ const InputContainer: React.FC<reiceviedProps> = ({
           />
           and
           <input
-            disabled={singleNumber ? true : false}
+            disabled={isDisabled || singleNumber ? true : false}
             type="number"
             value={range.end ?? ""}
             onChange={(e) =>
@@ -79,9 +88,10 @@ const InputContainer: React.FC<reiceviedProps> = ({
           disabled={
             singleNumber !== null || range.start === null || range.end === null
           }
-          onClick={() =>
-            sortPrimes(Math.ceil(range.start!), Math.ceil(range.end!))
-          }
+          onClick={() => {
+            sortPrimes(Math.ceil(range.start!), Math.ceil(range.end!));
+            setIsDisabled(true);
+          }}
         >
           Check
         </Button>

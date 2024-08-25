@@ -26,6 +26,7 @@ const App: React.FC = () => {
   const [isPrime, setIsPrime] = useState<boolean | null>(null);
   const [primes, setPrimes] = useState<number[]>([]);
   const [showResult, setShowResult] = useState<string | null>(null);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
   console.log(singleNumber);
 
@@ -68,14 +69,14 @@ const App: React.FC = () => {
           setRange={setRange}
           checkIfPrime={checkIfPrime}
           sortPrimes={sortPrimes}
+          isDisabled={isDisabled}
+          setIsDisabled={setIsDisabled}
         />
         <DisplayResult
-          isPrime={isPrime}
-          setIsPrime={setIsPrime}
           primes={primes}
-          setPrimes={setPrimes}
           showResult={showResult}
           setShowResult={setShowResult}
+          setIsDisabled={setIsDisabled}
         />
       </Container>
     </>
