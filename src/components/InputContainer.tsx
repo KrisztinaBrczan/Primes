@@ -35,7 +35,7 @@ const InputContainer: React.FC<ReiceviedProps> = ({
         <label>
           Is my number prime?
           <input
-            disabled={isDisabled}
+            disabled={isDisabled || range.start !== null || range.end !== null}
             type="number"
             value={singleNumber ?? ""}
             onChange={(e) =>
