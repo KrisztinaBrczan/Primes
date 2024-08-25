@@ -5,7 +5,7 @@ interface RangeValues {
   end: number | null;
 }
 
-interface reiceviedProps {
+interface ReiceviedProps {
   singleNumber: number | null;
   setSingleNumber: (singleNumber: number | null) => void;
 
@@ -19,7 +19,7 @@ interface reiceviedProps {
   setIsDisabled: (isDisabled: boolean) => void;
 }
 
-const InputContainer: React.FC<reiceviedProps> = ({
+const InputContainer: React.FC<ReiceviedProps> = ({
   singleNumber,
   setSingleNumber,
   range,
