@@ -5,6 +5,12 @@ interface RangeValues {
   end: number | null;
 }
 
+interface InputValues {
+  singleNumberInput: string;
+  startingNumberInput: string;
+  endingNumberInput: string;
+}
+
 interface ReiceviedProps {
   singleNumber: number | null;
   setSingleNumber: (singleNumber: number | null) => void;
@@ -17,6 +23,9 @@ interface ReiceviedProps {
 
   isDisabled: boolean;
   setIsDisabled: (isDisabled: boolean) => void;
+
+  inputValue: InputValues;
+  setInputValue: (inputValue: InputValues) => void;
 }
 
 const InputContainer: React.FC<ReiceviedProps> = ({
@@ -28,6 +37,8 @@ const InputContainer: React.FC<ReiceviedProps> = ({
   sortPrimes,
   isDisabled,
   setIsDisabled,
+  inputValue,
+  setInputValue,
 }) => {
   return (
     <>
@@ -37,10 +48,14 @@ const InputContainer: React.FC<ReiceviedProps> = ({
           <input
             disabled={isDisabled || range.start !== null || range.end !== null}
             type="number"
-            value={singleNumber ?? ""}
-            onChange={(e) =>
-              setSingleNumber(e.target.value ? Number(e.target.value) : null)
-            }
+            value={inputValue.singleNumberInput}
+            onChange={(e) => {
+              setSingleNumber(e.target.value ? Number(e.target.value) : null);
+              setInputValue({
+                ...inputValue,
+                singleNumberInput: e.target.value,
+              });
+            }}
           />
         </label>
         <Button
@@ -51,6 +66,7 @@ const InputContainer: React.FC<ReiceviedProps> = ({
           }
           onClick={() => {
             singleNumber ? checkIfPrime(singleNumber) : null;
+
             setIsDisabled(true);
           }}
         >
@@ -63,25 +79,34 @@ const InputContainer: React.FC<ReiceviedProps> = ({
           <input
             disabled={isDisabled || singleNumber ? true : false}
             type="number"
-            value={range.start ?? ""}
-            onChange={(e) =>
+            value={inputValue.startingNumberInput}
+            onChange={(e) => {
               setRange({
                 ...range,
                 start: e.target.value ? Number(e.target.value) : null,
-              })
-            }
+              });
+              setInputValue({
+                ...inputValue,
+                startingNumberInput: e.target.value,
+              });
+            }}
           />
           and
           <input
             disabled={isDisabled || singleNumber ? true : false}
             type="number"
-            value={range.end ?? ""}
-            onChange={(e) =>
+            value={inputValue.endingNumberInput}
+            onChange={(e) => {
               setRange({
                 ...range,
                 end: e.target.value ? Number(e.target.value) : null,
-              })
-            }
+              });
+
+              setInputValue({
+                ...inputValue,
+                endingNumberInput: e.target.value,
+              });
+            }}
           />
         </label>
         <Button
@@ -89,7 +114,10 @@ const InputContainer: React.FC<ReiceviedProps> = ({
             singleNumber !== null || range.start === null || range.end === null
           }
           onClick={() => {
-            sortPrimes(Math.ceil(range.start!), Math.ceil(range.end!));
+            sortPrimes(
+              Math.ceil(Number(range.start)),
+              Math.ceil(Number(range.end))
+            );
             setIsDisabled(true);
           }}
         >
