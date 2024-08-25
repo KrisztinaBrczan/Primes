@@ -3,3 +3,11 @@
 * {
   font-family: "Roboto-BoldItalic";
 }
+
+body {
+  background: linear-gradient(to bottom right, #e0f7fa, #fff);
+  color: #333;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}

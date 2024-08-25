@@ -1,4 +1,17 @@
+import styled from "styled-components";
 import { Button } from "../style/Button";
+
+const Container = styled.div`
+  margin-bottom: 1em;
+`;
+
+const InputField = styled.input`
+  padding: 0.5em;
+  margin: 0.5em;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 0.5em;
+`;
 
 interface RangeValues {
   start: number | null;
@@ -42,10 +55,10 @@ const InputContainer: React.FC<ReiceviedProps> = ({
 }) => {
   return (
     <>
-      <div>
+      <Container>
         <label>
           Is my number prime?
-          <input
+          <InputField
             disabled={isDisabled || range.start !== null || range.end !== null}
             type="number"
             value={inputValue.singleNumberInput}
@@ -72,58 +85,61 @@ const InputContainer: React.FC<ReiceviedProps> = ({
         >
           Check
         </Button>
-      </div>
-      <div>
-        <label>
-          Find primes between:
-          <input
-            disabled={isDisabled || singleNumber ? true : false}
-            type="number"
-            value={inputValue.startingNumberInput}
-            onChange={(e) => {
-              setRange({
-                ...range,
-                start: e.target.value ? Number(e.target.value) : null,
-              });
-              setInputValue({
-                ...inputValue,
-                startingNumberInput: e.target.value,
-              });
-            }}
-          />
-          and
-          <input
-            disabled={isDisabled || singleNumber ? true : false}
-            type="number"
-            value={inputValue.endingNumberInput}
-            onChange={(e) => {
-              setRange({
-                ...range,
-                end: e.target.value ? Number(e.target.value) : null,
-              });
 
-              setInputValue({
-                ...inputValue,
-                endingNumberInput: e.target.value,
-              });
+        <div>
+          <label>
+            Find primes between:
+            <InputField
+              disabled={isDisabled || singleNumber ? true : false}
+              type="number"
+              value={inputValue.startingNumberInput}
+              onChange={(e) => {
+                setRange({
+                  ...range,
+                  start: e.target.value ? Number(e.target.value) : null,
+                });
+                setInputValue({
+                  ...inputValue,
+                  startingNumberInput: e.target.value,
+                });
+              }}
+            />
+            and
+            <InputField
+              disabled={isDisabled || singleNumber ? true : false}
+              type="number"
+              value={inputValue.endingNumberInput}
+              onChange={(e) => {
+                setRange({
+                  ...range,
+                  end: e.target.value ? Number(e.target.value) : null,
+                });
+
+                setInputValue({
+                  ...inputValue,
+                  endingNumberInput: e.target.value,
+                });
+              }}
+            />
+          </label>
+          <Button
+            disabled={
+              singleNumber !== null ||
+              range.start === null ||
+              range.end === null
+            }
+            onClick={() => {
+              sortPrimes(
+                Math.ceil(Number(range.start)),
+                Math.ceil(Number(range.end))
+              );
+              setIsDisabled(true);
             }}
-          />
-        </label>
-        <Button
-          disabled={
-            singleNumber !== null || range.start === null || range.end === null
-          }
-          onClick={() => {
-            sortPrimes(
-              Math.ceil(Number(range.start)),
-              Math.ceil(Number(range.end))
-            );
-            setIsDisabled(true);
-          }}
-        >
-          Check
-        </Button>
-      </div>
+          >
+            Check
+          </Button>
+        </div>
+      </Container>
     </>
   );
 };
