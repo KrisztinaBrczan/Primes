@@ -98,7 +98,14 @@ const DisplayResult: React.FC<ReceivedProps> = ({
               rows={10}
             ></Textarea>
           </div>
-          <Button onClick={handleClear}>Clear</Button>
+          <Button
+            onClick={handleClear}
+            disabled={count !== null && count < primes.length ? true : false}
+          >
+            {count !== null && count < primes.length
+              ? "Calculating..."
+              : "Clear"}
+          </Button>
         </div>
       </Container>
     </>
