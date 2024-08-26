@@ -129,12 +129,12 @@ const InputContainer: React.FC<ReiceviedProps> = ({
             onClick={() => {
               sortPrimes(
                 Math.ceil(Number(range.start)),
-                Math.ceil(Number(range.end))
+                Math.floor(Number(range.end))
               );
               setIsDisabled(true);
             }}
           >
-            Check
+            Search
           </Button>
         </div>
       </Container>

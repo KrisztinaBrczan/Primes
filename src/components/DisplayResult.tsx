@@ -103,9 +103,7 @@ const DisplayResult: React.FC<ReceivedProps> = ({
             onClick={handleClear}
             disabled={count !== null && count < primes.length ? true : false}
           >
-            {count !== null && count < primes.length
-              ? "Calculating..."
-              : "Clear"}
+            {count !== null && count < primes.length ? "Searching..." : "Clear"}
           </Button>
         </div>
       </Container>
